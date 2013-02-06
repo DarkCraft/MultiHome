@@ -7,13 +7,7 @@ authors:
  - HereInPlainSight
 website: http://dev.bukkit.org/server-mods/multihome/
 softdepend:
- - Register
  - Vault
- - Permissions
- - PermissionsEx
- - PermissionsBukkit
- - PermissionsBukkit1-1
- - EssentialsHome
 license: WTFPL
 description: >
              Multiple home locations.
@@ -97,22 +91,22 @@ permissions:
             multihome.defaulthome.uninvite: true
     multihome.defaulthome.go:
         description: Allows the user to go to their default home.
-        default: false
+        default: op
     multihome.defaulthome.set:
         description: Allows the user to set their default home.
-        default: false
+        default: op
     multihome.defaulthome.delete:
         description: Allows the user to delete their default home.
-        default: false
+        default: op
     multihome.defaulthome.invite:
         description: Allows the user to invite others to their default home.
-        default: false
+        default: op
     multihome.defaulthome.invitetimed:
         description: Allows the user to invite others to their default home with a timer on the invitation.
-        default: false
+        default: op
     multihome.defaulthome.uninvite:
         description: Allows the user to recind an invitation.
-        default: false
+        default: op
     multihome.namedhome.*:
         description: Allows the user full access to the use of named homes.
         default: false
@@ -126,22 +120,22 @@ permissions:
             multihome.namedhome.uninvite: true
     multihome.namedhome.go:
         description: Allows the user to go to their named home(s).
-        default: false
+        default: op
     multihome.namedhome.set:
         description: Allows the user to set their named home(s).
-        default: false
+        default: op
     multihome.namedhome.delete:
         description: Allows the user to delete their named home(s).
-        default: false
+        default: op
     multihome.namedhome.invite:
         description: Allows the user to invite others to their named home(s).
-        default: false
+        default: op
     multihome.namedhome.invitetimed:
         description: Allows the user to invite others to their named home(s) with a timer on the invitation.
-        default: false
+        default: op
     multihome.namedhome.uninvite:
         description: Allows the user to recind an invitation to their named home(s).
-        default: false
+        default: op
     multihome.othershome.*:
         description: Gives the user full access to other people's homes and home information. Administrative.
         default: false
@@ -152,19 +146,19 @@ permissions:
             multihome.othershome.list: true
     multihome.othershome.go:
         description: Allows the user to go to another person's home uninvited.
-        default: false
+        default: op
     multihome.othershome.set:
         description: Allows the user to create another person's home.
-        default: false
+        default: op
     multihome.othershome.delete:
         description: Allows the user to delete another person's home.
-        default: false
+        default: op
     multihome.othershome.list:
         description: Allows the user to list another person's home.
-        default: false
+        default: op
     multihome.free.*:
         description: Allows the user to set/teleport to all homes they have access to for free.
-        default: false
+        default: op
         children:
             multihome.free.defaulthome.*: true
             multihome.free.namedhome.*: true
@@ -177,10 +171,10 @@ permissions:
             multihome.free.defaulthome.set: true
     multihome.free.defaulthome.go:
         description: Allows the user to go to their default home for free.
-        default: false
+        default: op
     multihome.free.defaulthome.set:
         description: Allows the user to set their default home for free.
-        default: false
+        default: op
     multihome.free.namedhome.*:
         description: Allows the user to set/teleport to their default home for free.
         default: false
@@ -189,13 +183,13 @@ permissions:
             multihome.free.namedhome.set: true
     multihome.free.namedhome.go:
         description: Allows the user to go to their named homes for free.
-        default: false
+        default: op
     multihome.free.namedhome.set:
         description: Allows the user to set their named homes for free.
-        default: false
+        default: op
     multihome.free.othershome.go:
         description: Allows the user to go to other's homes for free.
-        default: false
+        default: op
     multihome.listinvites.*:
         description: Allow the user to list invites open to themselves and by them to others.
         default: false
@@ -204,10 +198,10 @@ permissions:
             multihome.listinvites.toothers: true
     multihome.listinvites.tome:
         description: Allows the user to list invites open to them.
-        default: false
+        default: op
     multihome.listinvites.toothers:
         description: Allows the user to list invites they have open to others.
-        default: false
+        default: op
     multihome.ignore.*:
         description: Allows the user to ignore the cooldown and warmup timer.
         default: false
@@ -216,12 +210,12 @@ permissions:
             multihome.ignore.warmup: true
     multihome.ignore.cooldown:
         description: Allows the user to ignore the cooldown timer.
-        default: false
+        default: op
     multihome.ignore.warmup:
         description: Allows the user to ignore the warmup timer.
-        default: false
+        default: op
     multihome.homeondeath:
         description: The user will be taken to their default home when respawning.
-        default: false
+        default: op
 
     

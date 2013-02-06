@@ -22,7 +22,7 @@ public class HomePermissions {
 
     private enum PermissionsHandler {
 
-	VAULT, SUPERPERMS, NONE
+	VAULT, SUPERPERMS
     }
 
     public static boolean initialize(JavaPlugin plugin) {
@@ -55,11 +55,8 @@ public class HomePermissions {
 			case VAULT:
 				blnHasPermission = vault.has(player, permission);
 				break;
-			case SUPERPERMS:
+			default: 
 				blnHasPermission = player.hasPermission(permission);
-				break;
-			default:
-				blnHasPermission = player.isOp();
 				break;
 		}
 
