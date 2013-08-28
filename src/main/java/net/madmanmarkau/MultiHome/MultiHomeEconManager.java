@@ -2,7 +2,6 @@ package net.madmanmarkau.MultiHome;
 
 import net.milkbowl.vault.economy.Economy;
 
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class MultiHomeEconManager {
@@ -71,5 +70,11 @@ public class MultiHomeEconManager {
 		}
 
 		return amount+"";
+	}
+	
+	public static void destroy()
+	{
+		plugin = null;
+		vault = null;
 	}
 }

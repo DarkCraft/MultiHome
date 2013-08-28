@@ -326,4 +326,9 @@ public class Settings {
 			Messaging.sendSuccess(player, message.replaceAll("\\{AMOUNT\\}", amount+""));
 		}
 	}
+	
+	public static void destroy()
+	{
+		plugin = null;
+	}
 }
