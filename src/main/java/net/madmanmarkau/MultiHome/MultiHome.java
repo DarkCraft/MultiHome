@@ -17,18 +17,27 @@ public class MultiHome extends JavaPlugin {
 	private String pluginDataPath;
 	
 	private MultiHomeCommandExecutor commandExecutor;
-	private MultiHomePlayerListener playerListener = new MultiHomePlayerListener(this);
-	private MultiHomeEntityListener entityListener = new MultiHomeEntityListener(this);
+	private MultiHomePlayerListener playerListener;
+	private MultiHomeEntityListener entityListener;
 	
 	@Override
 	public void onDisable() {
 		getServer().getScheduler().cancelTasks(this);
+		
+		//Prevent bukkit memory leaks of Java Class Loader.
+		Settings.destroy(); 
+		MultiHomeEconManager.destroy();
+		
 		warmups.clearWarmups();
 		Messaging.logInfo("Version " + this.getDescription().getVersion() + " unloaded.", this);
 	}
 
 	@Override
 	public void onEnable() {
+		playerListener = new MultiHomePlayerListener(this);
+		entityListener = new MultiHomeEntityListener(this);
+		
+		
 		String dataStoreMethod;
 		pluginDataPath = this.getDataFolder().getAbsolutePath() + File.separator;
 		
