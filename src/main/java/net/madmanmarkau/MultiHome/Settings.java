@@ -1,6 +1,11 @@
 package net.madmanmarkau.MultiHome;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 public class Settings {
@@ -46,6 +51,22 @@ public class Settings {
 		// Get from default
 		return plugin.getConfig().getString("MultiHome.default." + setting, defaultValue);
 	}
+        
+        public static List<String> getSettingStringList(Player player, String setting, List<String> defaultValue) {
+		// Get the player group
+		String playerGroup = HomePermissions.getGroup(player);
+		
+		if (playerGroup != null) {
+			// Player group found
+			if (plugin.getConfig().isSet("MultiHome.groups." + playerGroup + "." + setting)) {
+				// Settings for player group exists.
+				return plugin.getConfig().getStringList("MultiHome.groups." + playerGroup + "." + setting);
+			}
+		}
+		
+		// Get from default
+		return plugin.getConfig().contains("MultiHome.default." + setting)? plugin.getConfig().getStringList("MultiHome.default." + setting) : defaultValue;
+	}
 	
 	
 
@@ -66,6 +87,23 @@ public class Settings {
 	public static boolean isEconomyEnabled() {
 		return plugin.getConfig().getBoolean("MultiHome.enableEconomy", false);
 	}
+        
+        public static boolean isMountTeleportEnabled() {
+                return plugin.getConfig().getBoolean("MultiHome.enableMountTeleport", false);
+        }
+        
+        public static boolean isMountTeleportWorldEnabled() {
+                return plugin.getConfig().getBoolean("MultiHome.enableMountTeleportWorld", false);
+        }
+        
+        public static Set<EntityType> getTeleportableMounts(Player player) {
+            List<String> config = getSettingStringList(player, "mountsToTeleport", new ArrayList());
+            Set<EntityType> entities = EnumSet.noneOf(EntityType.class);
+            for (String s : config) {
+                entities.add(EntityType.valueOf(s));
+            }
+            return entities;
+        }
 
 	public static int getSetNamedHomeCost(Player player) {
 		return getSettingInt(player, "setNamedHomeCost", 0);
@@ -102,6 +140,12 @@ public class Settings {
 	public static boolean getSettingDisrupt(Player player) {
 		return getSettingInt(player, "disruptWarmup", 1) == 1 ? true : false;
 	}
+        
+        public static void sendMessageCannotTeleportWithMount(CommandSender sender) {
+		String message = plugin.getConfig().getString("MultiHome.messages.cannotTeleportWithMount", null);
+
+		if (message != null) Messaging.sendSuccess(sender, message);
+        }
 	
 	public static void sendMessageTooManyParameters(CommandSender sender) {
 		String message = plugin.getConfig().getString("MultiHome.messages.tooManyParameters", null);

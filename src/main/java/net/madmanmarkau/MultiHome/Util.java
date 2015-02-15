@@ -8,8 +8,11 @@ import java.util.List;
 
 import net.madmanmarkau.MultiHome.Data.HomeEntry;
 import net.madmanmarkau.MultiHome.Data.InviteEntry;
+import org.bukkit.Bukkit;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -97,9 +100,39 @@ public class Util {
 	 * been fixed in 1.2.
 	 */
 	public static void teleportPlayer(Player player, Location location, JavaPlugin plugin) {
-		player.teleport(location);
+            if (player.isInsideVehicle()) {
+                Entity vehicle = player.getVehicle();                    
+                if(Settings.isMountTeleportEnabled() &&
+                        Settings.getTeleportableMounts(player).contains(vehicle.getType())) {
+                    if (!location.getWorld().equals(player.getWorld()) &&
+                            !Settings.isMountTeleportWorldEnabled()) {
+                        Settings.sendMessageCannotTeleportWithMount(player);
+                        return;
+                    }
+
+                    teleportPlayerWithVehicle(player, vehicle, location, plugin);
+                    return;
+                }
+                
+                player.leaveVehicle(); // leave vehicle before teleporting
+            }
+            player.teleport(location);
 	}
-	
+        
+        public static void teleportPlayerWithVehicle(final Player player, final Entity vehicle, final Location location, JavaPlugin plugin) {
+            player.leaveVehicle(); // eject player from any vehicle to prevent weirdness
+            player.teleport(location); // teleport player
+           
+            vehicle.teleport(player); // teleport vehicle to player
+
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    vehicle.setPassenger(player);
+                }
+            }, 5L);
+        }
+        
 	public static Date dateInFuture(int seconds) {
 		Date now = new Date();
 		

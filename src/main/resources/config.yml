@@ -44,9 +44,12 @@
 
 MultiHome:
     enableHomeOnDeath: false
+    enableMountTeleport: false
+    enableMountTeleportWorld: false
     enableEconomy: false
     dataStoreMethod: file
     messages:
+        cannotTeleportWithMount: 'You cannot teleport there while on a mount'
         tooManyParameters: 'Too many parameters.'
         defaultHomeSetMessage: 'Deafult home set.'
         cannotDeleteDefaultHomeMessage: 'You cannot delete your default home location.'
@@ -84,6 +87,7 @@ MultiHome:
         homeCost: 0
         namedHomeCost: 0
         othersHomeCost: 0
+        mountsToTeleport: [HORSE]
     groups:
         default:
             warmup: 0
@@ -94,6 +98,7 @@ MultiHome:
             setNamedHomeCost: 0
             homeCost: 0
             namedHomeCost: 0
+            mountsToTeleport: [HORSE]
     dataStoreSettings:
         file:
             filename: homes.txt

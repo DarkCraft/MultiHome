@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.madmanmarka.MultiHome</groupId>
     <artifactId>MultiHome</artifactId>
-    <version>0.15</version>
+    <version>0.16</version>
     <name>MultiHome</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,5 +1,5 @@
 name: MultiHome
-version: 0.15
+version: ${project.version}
 main: net.madmanmarkau.MultiHome.MultiHome
 authors:
  - MadManMarkAu
